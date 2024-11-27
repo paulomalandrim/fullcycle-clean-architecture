@@ -14,7 +14,7 @@ export default class Customer{
         this.validate();
     }
 
-    get name(): String{
+    get name(): string{
         return this._name;
     }
 
