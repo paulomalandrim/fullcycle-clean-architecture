@@ -1,15 +1,4 @@
-export interface InputCreateCustomerDto {
-    name: string;
-    address: {
-        street: string;
-        number: number;
-        state: string;
-        zip: string;
-        city: string;
-    };
-}
-
-export interface OutputCreateCustomerDto {
+export interface InputUpdateCustomerDto {
     id: string;
     name: string;
     address: {
@@ -21,3 +10,14 @@ export interface OutputCreateCustomerDto {
     };
 }
 
+export interface OutputUpdateCustomerDto{
+    id: string;
+    name: string;
+    address: {
+        street: string;
+        number: number;
+        state: string;
+        zip: string;
+        city: string;
+    };
+}

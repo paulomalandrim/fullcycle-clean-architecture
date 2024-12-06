@@ -6,10 +6,10 @@ export interface OutputFindCustomerDto {
     id: string;
     name: string;
     address: {
-        street: string;
-        number: number;
-        city: string;
-        state: string;
-        zip: string;
+        street: string,
+        number: number,
+        city: string,
+        state: string,
+        zip: string
     }
 }
