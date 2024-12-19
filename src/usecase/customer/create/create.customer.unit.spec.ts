@@ -49,7 +49,7 @@ describe("Unit Test create customer use case", () => {
         input.name = "";
 
         await expect(customerCreateUseCase.execute(input)).rejects.toThrow(
-            "Name cannot be empty"
+            "customer: Name is required"
         )
 
     });
