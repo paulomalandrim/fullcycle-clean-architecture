@@ -2,6 +2,8 @@ import express from 'express';
 import CreateCustomerUseCase from '../../../usecase/customer/create/create.customer.usecase';
 import CustomerRepository from '../../customer/repository/sequelize/customer.repository';
 import ListCustomerUseCase from '../../../usecase/customer/list/list.customer.usecase';
+import { json } from 'sequelize';
+import CustomerPresenter from '../presenters/customer.presenter';
 
 export const customerRoute = express.Router();
 
@@ -33,14 +35,10 @@ customerRoute.post('/', async (req, res) => {
 customerRoute.get('/', async (req, res) => {
     // Implementar a listagem de clientes
     const usecase = new ListCustomerUseCase(new CustomerRepository());
-    try {
+    const output = await usecase.execute({});
 
-        console.log("Tentativa de listar todos clientes...");
-        
-        const output = await usecase.execute({});
-
-        res.status(200).send(output);
-    } catch (err) {
-        res.status(500).send(err);
-    }
+    res.format({
+        json: async () => res.send(output),
+        xml: async () => res.send(CustomerPresenter.listXML(output)),
+    });
 });

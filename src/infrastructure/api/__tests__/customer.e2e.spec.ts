@@ -91,6 +91,22 @@ describe("E2E test for customer", () => {
         expect(response.body.customers[1].address.street).toBe("Rua Street");
         
 
+        const responseXML = await request(app)
+        .get("/customers")
+        .set('Accept', 'application/xml')
+        .send({});
+
+        expect(responseXML.status).toBe(200);
+        expect(responseXML.text).toContain("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+        expect(responseXML.text).toContain("<customers>");
+        expect(responseXML.text).toContain("<customer>");
+        expect(responseXML.text).toContain("<id>");
+        expect(responseXML.text).toContain("<name>John Doe</name>");
+        
+        
+
+
+
     })
 
 
